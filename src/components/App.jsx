@@ -1,32 +1,35 @@
+/*jslint es6:true*/
 import React from "react";
 import Card from "./Cards.jsx";
 import { contacts } from "../contacts.js";
 import Avatar from "./Avatar.jsx";
+import { AvatarImg } from '../AvatarImg';
+
+// Add this in your component file
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
+
+const createContact = (contact) => (
+  <Card
+      key={contact.id}
+      name={contact.name}
+      imgURL={contact.imgURL}
+      phone={contact.phone}
+      email={contact.email}
+  />
+)
 
 function App() {
   return (
     <div>
       <h1 className="heading">My Contacts</h1>
       <h2 className="heading"> My Profile </h2>
-      <Avatar img={contacts[3].imgURL} />
-      <Card
-        name={contacts[0].name}
-        imgURL={contacts[0].imgURL}
-        phone={contacts[0].phone}
-        email={contacts[0].email}
-      />
-      <Card
-        name={contacts[1].name}
-        imgURL={contacts[1].imgURL}
-        phone={contacts[1].phone}
-        email={contacts[1].email}
-      />
-      <Card
-        name={contacts[2].name}
-        imgURL={contacts[2].imgURL}
-        phone={contacts[2].phone}
-        email={contacts[2].email}
-      />
+
+      <Avatar img={AvatarImg[0].imgURL} />
+
+      {contacts.map(createContact)}
+
     </div>
   );
 }
